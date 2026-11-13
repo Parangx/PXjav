@@ -1,6 +1,12 @@
-import { supabase } from '../../lib/supabase';
+import { createClient } from '@supabase/supabase-js';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+
+// Langsung definisikan di sini (tanpa import dari lib/supabase)
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 
 export default async function Watch({ params }: { params: { id: string } }) {
   const { data: video } = await supabase
